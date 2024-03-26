@@ -1,0 +1,29 @@
+{% extends "mestra.html" %}
+
+S{% block title %} Cadastro Realizado com Sucesso! {% endblock %}
+
+{% block content %}
+
+     <div class="w3-container w3-center w3-responsive">
+          <table class="w3-table w3-striped w3-bordered w3-hoverable">
+               <tr class="w3-blue">
+                    <th>Nome</th>
+                    <th>Sobrenome</th>
+                    <th>Telefone</th>
+                    <th>Endereço</th>
+               </tr>  
+               
+               {% for x in listagem %}
+                    <tr>
+                         <td>{{x.firstname}}</td>
+                         <td>{{x.lastname}}</td>
+                         <td>{{x.phone}}</td>
+                         <td>{{x.address}}</td>
+                    </tr>
+               {% endfor %}
+          </table>
+     </div>
+     <button class="w3-buttom w3-xlarge w3-blue w3-round-large w3-margin-left w3-margin-top">
+          <a style="color:blanchedalmond" href="/">Voltar</a>
+     </button>
+{% endblock %}

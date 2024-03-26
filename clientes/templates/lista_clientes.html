@@ -1,0 +1,13 @@
+{% extends "mestra.html" %}
+
+{% block content %}
+
+    <p><a href="/">Início</a></p>
+
+    <h1>Lista de Clientes</h1>
+    <ul>
+        {% for x in clientes %}
+            <li><a href="detalhes/{{ x.id }}">{{ x.firstname }} {{x.lastname}}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

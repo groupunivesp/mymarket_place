@@ -1,0 +1,15 @@
+{% extends "mestra.html" %}
+
+{% block title %}
+Detalhes de: {{cliente.firstname}} {{cliente.lastname}}
+{% endblock %}
+
+{% block content %}
+
+    <h1>{{ cliente.firstname}} {{cliente.lastname}}</h1>
+    <p>Fone: {{ cliente.phone }}</p>
+    <p>Endereço: {{ cliente.address }}</p>
+
+    <p>Voltar para <a href="/clientes">Clientes</a></p>
+
+{% endblock %}

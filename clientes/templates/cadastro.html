@@ -1,0 +1,38 @@
+{% extends "mestra.html" %}
+
+{% block title %} Cadastre-se {% endblock %}
+
+
+{% block content %}
+
+    <div class="w3-container w3-center w3-section w3-blue">
+
+        <h1>Área do Cliente</h1>
+
+    </div>
+         
+        <form class="w3-container w3-center
+        w3-round-large w3-section w3-pale-blue" action="{% url 'listagem' %}" method="post">
+
+            <!--{% csrf_token %} não está funcionando-->
+
+            <label for="firstname">Nome:</label><br>
+            <input class="w3-border w3-round-small"  type="text" id="idname" name="firstname" required><br>
+            <label for="lastname">Sobrenome:</label><br>
+            <input class="w3-border w3-round-small" type="text" id="idname" name="lastname" required><br>
+            <label for="phone">Telefone:</label><br>
+            <input class="w3-border w3-round-small" type="text" id="idphone" name="phone" ><br>
+            <label for="address">Endereço:</label><br>
+            <input class="w3-border w3-round-small" type="text" id="idaddress" name="address"><br>
+            
+            <button class="w3-button w3-round-large w3-blue w3-margin-top w3-margin-bottom">
+                Concluir
+            </button>
+            
+        </form>
+
+    <button class="w3-button w3-blue w3-round-large w3-margin-left">
+        <a href="/">Voltar!</a>
+    </button>
+
+{% endblock %}
