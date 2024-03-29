@@ -46,7 +46,7 @@ def novocad(request):
     name = request.POST.get('firstname')
     lname = request.POST.get('lastname')
 
-    if (Visitante.objects.filter(firstname=name).values()) | (Visitante.objects.filter(lastname=lname).values()):
+    if (Visitante.objects.filter(firstname=name).values()) and (Visitante.objects.filter(lastname=lname).values()):
         # Aqui falta implementar um código que retorna um alerta ao visitante 
         # mostrando que não pôde concluir cadastro por duplicidade 
         pass
