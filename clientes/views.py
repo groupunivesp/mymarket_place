@@ -45,11 +45,19 @@ def novocad(request):
     # da classe Visistante
     name = request.POST.get('firstname')
     lname = request.POST.get('lastname')
+    user = request.POST.get('username')
+    password = request.POST.get('password')
 
     if (Visitante.objects.filter(firstname=name).values()) and (Visitante.objects.filter(lastname=lname).values()):
         # Aqui falta implementar um código que retorna um alerta ao visitante 
         # mostrando que não pôde concluir cadastro por duplicidade 
-        pass
+        template = loader.get_template('has_name_lastname.html')
+        return HttpResponse(template.render())
+    
+    elif (Visitante.objects.filter(username=user).values()):
+        template = loader.get_template('has_user.html')
+        return HttpResponse(template.render())
+    
     else:
         # constatado que os valores de nome e sobenome não são duplicados 
         # valores de telefone e  endereço são salvos na variável como método save()
@@ -57,14 +65,18 @@ def novocad(request):
         novocad.lastname = lname
         novocad.phone = request.POST.get('phone')
         novocad.address = request.POST.get('address')
+        novocad.username = user
+        novocad.password = password
         novocad.save()
-    
+
         # é passado um dicionário com todos os objetos da Classe Visitante 
         # para a variável listagem e passada como parãmetro a ser renderizado
-        listagem = {
-            'listagem': Visitante.objects.all()
-        }
-        return render(request, 'listagem.html', listagem)
+        # alterei a identação de 64 à 68 pois estava dando erro caso tentasse
+        # cadastrar o mesmo nome de visitante
+    listagem = {
+        'listagem': Visitante.objects.all()
+    }
+    return render(request, 'listagem.html', listagem)
     
-def template(request):   
+def has_user(request):   
     return HttpResponse('hello world')

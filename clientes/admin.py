@@ -3,7 +3,7 @@ from .models import Cliente, Visitante
 
 
 class ClienteAdmin(admin.ModelAdmin):
-    list_display = ("id", "firstname", "lastname", "phone", "address",)
+    list_display = ("id", "firstname", "lastname", "phone", "address")
 
 admin.site.register(Cliente, ClienteAdmin)
 
