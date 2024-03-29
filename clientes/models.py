@@ -6,9 +6,11 @@ class Cliente(models.Model):
     lastname = models.CharField(max_length=255)
     phone = models.CharField(max_length=255, null=True)
     address = models.CharField(max_length=255, null=True)
+    username = models.CharField(max_length=20, null=True)
+    password = models.CharField(max_length=20, null=True)
     
     def __str__(self):
-        return f"{self.firstname} {self.lastname} {self.phone} {self.address}"
+        return f"{self.firstname} {self.lastname} {self.phone} {self.address} {self.username} {self.password}"
     
     
 class Visitante(models.Model):
@@ -17,6 +19,8 @@ class Visitante(models.Model):
     lastname = models.CharField(max_length=255)
     phone = models.CharField(max_length=255, null=True)
     address = models.CharField(max_length=255, null=True)
+    username = models.CharField(max_length=20, null=True)
+    password = models.CharField(max_length=20, null=True)
     
     def __str__(self):
-        return f"{self.firstname} {self.lastname} {self.phone} {self.address}"
+        return f"{self.firstname} {self.lastname} {self.phone} {self.address} {self.username} {self.password}"
