@@ -3,6 +3,10 @@ from django.http import HttpResponse, HttpRequest
 from django.template import loader
 from .models import Cliente, Visitante
 from django.views.decorators.csrf import requires_csrf_token, csrf_protect, csrf_exempt
+# criei um arquivo de funções para depois importa aqui nas views
+# para a função cadastro não ficar muito grande, 
+# usando definições de herança para o projeto e conceitos de modulo
+from .my_functions import tamanho_valid, confere_senha
 
 def clientes(request):
     clientes = Cliente.objects.all().values()
@@ -46,11 +50,10 @@ def novocad(request):
     name = request.POST.get('firstname')
     lname = request.POST.get('lastname')
     user = request.POST.get('username')
-    password = request.POST.get('password')
+    senha = request.POST.get('password')
+    senha1 = request.POST.get('confirm_pass')
 
     if (Visitante.objects.filter(firstname=name).values()) and (Visitante.objects.filter(lastname=lname).values()):
-        # Aqui falta implementar um código que retorna um alerta ao visitante 
-        # mostrando que não pôde concluir cadastro por duplicidade 
         template = loader.get_template('has_name_lastname.html')
         return HttpResponse(template.render())
     
@@ -59,24 +62,36 @@ def novocad(request):
         return HttpResponse(template.render())
     
     else:
-        # constatado que os valores de nome e sobenome não são duplicados 
-        # valores de telefone e  endereço são salvos na variável como método save()
+        
+        # passado a verificação de nome e usuário, próxima verificação:
+        
+        if tamanho_valid(senha) == False:
+            return HttpResponse(f'<h1>Senha Fraca</h1>')
+        
+        elif (tamanho_valid(senha) == True) and (confere_senha(senha, senha1) == False):
+            return HttpResponse(f'<h1>Senha não Confere!</h1>')
+        
+        else:
+            senha = senha         
+          
+        # constatado que os valores não são duplicados 
+        # valores são salvos com o método save()
+        
         novocad.firstname = name
         novocad.lastname = lname
         novocad.phone = request.POST.get('phone')
         novocad.address = request.POST.get('address')
         novocad.username = user
-        novocad.password = password
+        novocad.password = senha
         novocad.save()
+                
+    # é passado um dicionário com todos os objetos da Classe Visitante 
+    # para a variável listagem e passada como parãmetro a ser renderizado
+    # alterei a identação de 64 à 68 pois estava dando erro caso tentasse
+    # cadastrar o mesmo nome de visitante
 
-        # é passado um dicionário com todos os objetos da Classe Visitante 
-        # para a variável listagem e passada como parãmetro a ser renderizado
-        # alterei a identação de 64 à 68 pois estava dando erro caso tentasse
-        # cadastrar o mesmo nome de visitante
     listagem = {
         'listagem': Visitante.objects.all()
     }
     return render(request, 'listagem.html', listagem)
-    
-def has_user(request):   
-    return HttpResponse('hello world')
+
