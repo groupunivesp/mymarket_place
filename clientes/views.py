@@ -3,9 +3,11 @@ from django.http import HttpResponse, HttpRequest
 from django.template import loader
 from .models import Cliente, Visitante
 from django.views.decorators.csrf import requires_csrf_token, csrf_protect, csrf_exempt
+
 # criei um arquivo de funções para depois importa aqui nas views
 # para a função cadastro não ficar muito grande, 
 # usando definições de herança para o projeto e conceitos de modulo
+
 from .my_functions import tamanho_valid, confere_senha
 
 def clientes(request):
@@ -35,6 +37,7 @@ def login(request):
 # foi necessário definir novas funções já que as funções anteriores só fazem 
 # novos cadastros mediante um administrador. E não é viável o administrador 
 # cadastrar cada visitante sempre que solicitado
+
 def cadastro(request):
     template = loader.get_template('cadastro.html')
     return HttpResponse(template.render())
@@ -42,11 +45,15 @@ def cadastro(request):
 @csrf_protect
 @csrf_exempt # -> único método que funcionou sem restricão do token
 def novocad(request):
+    
     # novocad recebe um objeto da classe Visitante
+    
     novocad = Visitante()
+    
     # aqui as variáveis recebem valores de nome e sobrenome do post 
     # para posterior comparação de valores contidos na variável que recebe os objetos 
     # da classe Visistante
+    
     name = request.POST.get('firstname')
     lname = request.POST.get('lastname')
     user = request.POST.get('username')
@@ -87,7 +94,7 @@ def novocad(request):
                 
     # é passado um dicionário com todos os objetos da Classe Visitante 
     # para a variável listagem e passada como parãmetro a ser renderizado
-    # alterei a identação de 64 à 68 pois estava dando erro caso tentasse
+    # alterei a identação de 100 à 103 pois estava dando erro caso tentasse
     # cadastrar o mesmo nome de visitante
 
     listagem = {
