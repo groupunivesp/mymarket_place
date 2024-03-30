@@ -9,7 +9,7 @@ admin.site.register(Cliente, ClienteAdmin)
 
 
 class VisitanteAdmin(admin.ModelAdmin):
-    list_display = ("id","firstname", "lastname", "phone","address")
+    list_display = ("id","firstname", "lastname", "phone","address", "username", "password")
     
 admin.site.register(Visitante, VisitanteAdmin)
 

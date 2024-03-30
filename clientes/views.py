@@ -30,6 +30,7 @@ def detalhes(request, id):
     template = loader.get_template('main.html')
     return HttpResponse(template.render())"""
 
+@csrf_exempt # -> ainda não funcional
 def login(request):
     template = loader.get_template('login.html')
     return HttpResponse(template.render())
@@ -102,3 +103,20 @@ def novocad(request):
     }
     return render(request, 'listagem.html', listagem)
 
+@csrf_exempt # -> ainda não funcional
+def login_ok(request):
+    
+    # recupera valores da tela de login 
+    usrname = request.POST.get('usrname')
+    psw = request.POST.get('psw')
+    
+    # compara com valores cadastrados
+    if (Visitante.objects.filter(username=usrname).values()) and (Visitante.objects.filter(password=psw)):
+       
+        # Se tudo ok, renderiza uma página de acesso interno
+        template = loader.get_template('login_ok.html')
+        return HttpResponse(template.render())
+    
+    else:
+        # caso contrário emite um erro de acesso
+        return HttpResponse(f'<h1>Usuário ou senha inválido, tente novamente!!!</h1>')
