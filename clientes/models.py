@@ -24,3 +24,11 @@ class Visitante(models.Model):
     
     def __str__(self):
         return f"{self.firstname} {self.lastname} {self.phone} {self.address} {self.username} {self.password}"
+    
+class Produto(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=15, null=True)
+    price = models.CharField(max_length=8, null=True)
+    
+    def __str__(self):
+        return f"{self.id} {self.name} {self.price}"

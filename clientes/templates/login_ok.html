@@ -3,5 +3,36 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-    <h1>Logado com sucesso</h1>
+
+    <div class="w3-panel w3-green">
+        <h3>Logado com sucesso</h3>
+    </div> 
+
+    <table class="w3-table w3-bordered">
+        <!--Construir uma tabela com os itens à venda-->
+        <tr>
+            <th>ID</th>
+            <th>Nome do Produto</th>
+            <th>Preço</th>
+        </tr>
+            {% for p in lista_prod %}
+                <tr>
+                    <td>{{p.id}}</td>
+                    <td>{{p.name}}</td>
+                    <td>{{p.price}}</td>
+                </tr>
+            {% endfor %}
+    </table>
+
+    <button class="w3-button w3-xlarge w3-blue w3-round-large 
+    w3-margin-left w3-margin-top" style="width:150px;">
+        <a href="/">Sair</a>
+    </button>
+
+    <button class="w3-button w3-xlarge w3-green w3-round-large 
+    w3-margin-left w3-margin-top" style="width:250px;">
+        <a href="/">Concluir Compra </a> <!--Aplicar um redirecionamento para página de pedidos ou concluir os pedidos-->
+    </button>
+
 {% endblock %}
+

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
 from django.template import loader
-from .models import Cliente, Visitante
+from .models import Cliente, Visitante, Produto
 from django.views.decorators.csrf import requires_csrf_token, csrf_protect, csrf_exempt
 
 # criei um arquivo de funções para depois importa aqui nas views
@@ -115,7 +115,12 @@ def login_ok(request):
        
         # Se tudo ok, renderiza uma página de acesso interno
         template = loader.get_template('login_ok.html')
-        return HttpResponse(template.render())
+        # aqui traz uma lista de produtos que administrador cadastrou
+        lista_prod = Produto.objects.all().values()
+        lista = {
+            'lista_prod': lista_prod
+        }
+        return HttpResponse(template.render(lista, request))
     
     else:
         # caso contrário emite um erro de acesso
