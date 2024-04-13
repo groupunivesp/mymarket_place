@@ -1,38 +1,64 @@
 {% extends "mestra.html" %}
 
-{% block title %}{% endblock %}
-
 {% block content %}
 
     <div class="w3-panel w3-green">
-        <h3>Logado com sucesso</h3>
+        <h3>Logado com sucesso</h3> 
     </div> 
 
-    <table class="w3-table w3-bordered">
-        <!--Construir uma tabela com os itens à venda-->
-        <tr>
-            <th>ID</th>
-            <th>Nome do Produto</th>
-            <th>Preço</th>
-        </tr>
-            {% for p in lista_prod %}
-                <tr>
-                    <td>{{p.id}}</td>
-                    <td>{{p.name}}</td>
-                    <td>{{p.price}}</td>
-                </tr>
-            {% endfor %}
-    </table>
+    <div class="w3-responsive w3-margin-left">
+        
+        <table id="tb_prod"  class="w3-table w3-bordered">
 
-    <button class="w3-button w3-xlarge w3-blue w3-round-large 
-    w3-margin-left w3-margin-top" style="width:150px;">
+            <!--Construir uma tabela com os itens à venda-->
+            <tr>
+                <th>Nome do Produto</th>
+                <th>Preço</th>
+                <th>Escolher</th>
+                <th>Quanto vou levar</th>
+            </tr>
+
+            <!-- um loop for para listar os produtos cadastrados-->
+
+                {% for p in dict_prod %}
+                    <tr>
+                        <td>{{p.name}}</td>
+                        <td>{{p.price}}</td>
+                        <td><input class="w3-check" type="checkbox" id="choice{{p.id}}" name="form_choice{{p.id}}"></td>
+                        <td><input style="width: 50px;" type="number" id="count_{{p.id}}" name="form_count{{p.id}}" min="1" max="10"></td>
+                    </tr>
+                {% endfor %}
+
+        </table>
+    </div>
+    
+    <div class="w3-container">
+
+        <button class="w3-button w3-xlarge w3-blue w3-round-large 
+        w3-margin-left w3-margin-top" style="width:150px;">
         <a href="/">Sair</a>
-    </button>
+        </button>
 
-    <button class="w3-button w3-xlarge w3-green w3-round-large 
-    w3-margin-left w3-margin-top" style="width:250px;">
-        <a href="/">Concluir Compra </a> <!--Aplicar um redirecionamento para página de pedidos ou concluir os pedidos-->
-    </button>
+        <button onclick="document.getElementById('id01').style.display='block'"
+        class="w3-button w3-green w3-round-large w3-margin-left w3-margin-top" 
+        style="font-size:x-large; width:300px">Ver Minha Cesta</button>
+    
+        <div id="id01" class="w3-modal w3-animate-opacity">
+            <div class="w3-modal-content w3-card-4">
+                <header class="w3-container w3-pale-blue"> 
+                <span onclick="document.getElementById('id01').style.display='none'" 
+                class="w3-button w3-large w3-display-topright">&times;</span>
+                <button class="w3-button"  onclick="viewItens()"><h3>Meus Produtos</h3></button>
+                </header>
+                    <div class="w3-container">
+                        <p id="demo"></p><!--listar cesta de produtos-->
+                    </div>
+                <footer class="w3-container w3-pale-blue">
+                    <button class="w3-button"><a href="pedidos_ok/"><h3>Finalizar Compra</h3></a> </button>
+                </footer>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
 

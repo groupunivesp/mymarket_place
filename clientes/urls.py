@@ -5,6 +5,7 @@ urlpatterns = [
     #path('', views.main, name='main'),
     path('', views.login, name='login'),
     path('login_ok/', views.login_ok, name='login_ok'),
+    path('login_ok/pedidos_ok/', views.pedidos_ok, name='pedidos_ok'),
     path('cadastro/', views.cadastro, name='cadastro'),
     path('cadastro/listagem/', views.novocad, name='listagem'),
     path('clientes/', views.clientes, name='clientes'),

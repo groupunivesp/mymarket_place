@@ -115,13 +115,28 @@ def login_ok(request):
        
         # Se tudo ok, renderiza uma página de acesso interno
         template = loader.get_template('login_ok.html')
-        # aqui traz uma lista de produtos que administrador cadastrou
-        lista_prod = Produto.objects.all().values()
-        lista = {
-            'lista_prod': lista_prod
-        }
-        return HttpResponse(template.render(lista, request))
+        # aqui traz uma dicionário de produtos que administrador cadastrou 
+        # ordenados por nome
+        dict_prod = Produto.objects.all().values().order_by('name')
+        dictionary = {
+            'dict_prod': dict_prod
+            }
+        return HttpResponse(template.render(dictionary, request))
     
     else:
         # caso contrário emite um erro de acesso
         return HttpResponse(f'<h1>Usuário ou senha inválido, tente novamente!!!</h1>')
+
+def pedidos_ok(request):
+    template = loader.get_template('pedidos_ok.html')
+
+    return HttpResponse(template.render())
+
+    
+        
+
+        
+        
+            
+
+    

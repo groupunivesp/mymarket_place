@@ -9,4 +9,3 @@ def tamanho_valid(senha):
         return True
     else:
         return False
-    

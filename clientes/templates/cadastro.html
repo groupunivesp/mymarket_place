@@ -1,13 +1,13 @@
 {% extends "mestra.html" %}
 
-{% block title %} Cadastre-se {% endblock %}
+{% block title %} {% endblock %}
 
 
 {% block content %}
 
-    <div class="w3-container w3-center w3-section w3-blue">
+    <div class="w3-container w3-margin-left w3-section w3-blue">
 
-        <h1>Área do Cliente</h1>
+        <h1>Cadastre-se</h1>
 
     </div>
          
@@ -21,9 +21,9 @@
             <label for="lastname">Sobrenome:</label><br>
             <input class="w3-border w3-round-small" style="width:300px;" type="text" id="idname" name="lastname" required><br>
             <label for="phone">Telefone:</label><br>
-            <input class="w3-border w3-round-small" style="width:300px;" type="text" id="idphone" name="phone" ><br>
+            <input class="w3-border w3-round-small" style="width:300px;" type="tel"  pattern="[(0-9)]{2} [0-9]{4}-[0-9]{4}" id="idphone" name="phone" required><br>
             <label for="address">Endereço:</label><br>
-            <input class="w3-border w3-round-small" style="width:300px;" type="text" id="idaddress" name="address"><br>
+            <input class="w3-border w3-round-small" style="width:300px;" type="text" id="idaddress" name="address" required><br>
             <label for="address">Nome de Usuário:</label><br>
             <input class="w3-border w3-round-small" type="text" id="idusername" name="username" required><br>
             <label for="address">Senha:</label><br>

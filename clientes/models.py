@@ -32,3 +32,7 @@ class Produto(models.Model):
     
     def __str__(self):
         return f"{self.id} {self.name} {self.price}"
+    
+'''class Pedido(models.Model):
+    id = models.AutoField(primary_key=True)'''
+    
