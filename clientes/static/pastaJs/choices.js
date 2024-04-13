@@ -1,4 +1,6 @@
-
+// havia um erro de locação da pasta static em que o caminho não era reconhecido 
+// questão a resolver para recuperar objetos e respectivas chaves\valores 
+//  a partir de um checkbox 
 
 function myChoice() {
 
@@ -7,8 +9,11 @@ function myChoice() {
     cells = "";
     choice = "";
 
-    table = document.getElementById("tb_prod");
-    query = table.querySelectorAll(".w3-check");
+    table = document.getElementById("tb_prod"); // aqui tive que navegar na hierarquia de elementos para buscar id fixo;
+    query =table.querySelectorAll(".w3-check"); // não pude utilizar o id pois a tabela iterada e javascript não reconhece a tag {{p.id}}
+
+    // não possível: document.getElementById("choice{{p.id}}").checked = true;
+
     let list = "";  
 
     for (let i=1; i<=query.length; i++) {
@@ -20,15 +25,11 @@ function myChoice() {
         document.getElementById("demo").innerHTML = list;
     }
     /*for (let i=1; i<=table.length; i++) {
-        for (let j=0; j<3; j++) {
-            cell[j] = table.rows[i].cells[j];
-        }
-        cells[i] = table.rows[i].cells + "<br>";
-    }
-    document.getElementById("demo").innerHTML = cells;*/
+            cell = table.rows[i].cells + "<br>";
+        }*/
 
     //document.getElementById("demo").innerHTML = cell;
     //document.getElementById("demo").innerHTML = cell[2].innerHTML+" - "+cell[3].innerHTML
-        //document.getElementById("demo").innerHTML = cell[0].innerHTML+" - "+cell[1].innerHTML;  
+    //document.getElementById("demo").innerHTML = cell[0].innerHTML+" - "+cell[1].innerHTML;  
     }
 
