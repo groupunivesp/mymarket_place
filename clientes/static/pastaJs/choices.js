@@ -4,18 +4,17 @@
 
 function myChoice() {
 
-    let rows = document.getElementsByTagName("tr");
-    cell = "";
-    cells = "";
-    choice = "";
+    let cell = "";
+    let cells = "";
+    let choice = "";
 
+    let rows = document.getElementsByTagName("tr");
     table = document.getElementById("tb_prod"); // aqui tive que navegar na hierarquia de elementos para buscar id fixo;
     query =table.querySelectorAll(".w3-check"); // não pude utilizar o id pois a tabela iterada e javascript não reconhece a tag {{p.id}}
 
     // não possível: document.getElementById("choice{{p.id}}").checked = true;
 
     let list = "";  
-
     for (let i=1; i<=query.length; i++) {
         if (query[i] = true) {
             list += "ok"+i+"<br>";
